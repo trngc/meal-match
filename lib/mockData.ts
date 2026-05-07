@@ -69,6 +69,10 @@ export type VoteTotals = {
 
 export const SERENA_ID = "serena";
 
+/** Generic food photo if a restaurant image fails to load (Unsplash). */
+export const RESTAURANT_IMAGE_FALLBACK =
+  "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800";
+
 function mapsLink(name: string, address: string): string {
   const q = encodeURIComponent(`${name}, ${address}`);
   return `https://www.google.com/maps/search/?api=1&query=${q}`;
@@ -87,7 +91,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Legendary pho, no-frills, the OG.",
     address: "5703 Chemin de la Côte-des-Neiges, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/pho-lien/800/900",
+      "https://images.unsplash.com/photo-1591814468924-caf88d1232e1?w=800",
     mapsUrl: mapsLink("Phở Liên", "5703 Chemin de la Côte-des-Neiges, Montréal"),
   },
   {
@@ -102,7 +106,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Stylish takes on Vietnamese street food.",
     address: "1201 Rue de Bullion, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/red-tiger/800/900",
+      "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800",
     mapsUrl: mapsLink("Le Red Tiger", "1201 Rue de Bullion, Montréal"),
   },
   {
@@ -117,7 +121,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Cozy spot, generous portions, authentic.",
     address: "1791 Rue Sainte-Catherine O, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/bistro-co-ut/800/900",
+      "https://images.unsplash.com/photo-1583224964978-2257b960c3d3?w=800",
     mapsUrl: mapsLink("Bistro Cô Út", "1791 Rue Sainte-Catherine O, Montréal"),
   },
   {
@@ -132,7 +136,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Young, creative, family-run vibes.",
     address: "6076 Rue Saint-Hubert, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/tran-cantine/800/900",
+      "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800",
     mapsUrl: mapsLink("Tran Cantine", "6076 Rue Saint-Hubert, Montréal"),
   },
   {
@@ -147,7 +151,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Locals say best pho in town. Worth the line.",
     address: "1016 Boul. Saint-Laurent, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/pho-bac-97/800/900",
+      "https://images.unsplash.com/photo-1576577445504-6af96477db52?w=800",
     mapsUrl: mapsLink("Pho Bac 97", "1016 Boul. Saint-Laurent, Montréal"),
   },
   {
@@ -162,7 +166,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Bright, colorful, lots of veggie options.",
     address: "4380 Rue Saint-Denis, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/petit-sao/800/900",
+      "https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800",
     mapsUrl: mapsLink("Le Petit Sao", "4380 Rue Saint-Denis, Montréal"),
   },
   {
@@ -177,7 +181,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Best banh mi, sesame bread, real cheap.",
     address: "5772 Boul. Décarie, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/hoang-oanh/800/900",
+      "https://images.unsplash.com/photo-1600454267253-50ec4c98203b?w=800",
     mapsUrl: mapsLink("Hoang Oanh Sandwich", "5772 Boul. Décarie, Montréal"),
   },
   {
@@ -192,7 +196,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Sushi + bao + bowls, sleek modern.",
     address: "Vaudreuil-Dorion",
     imageUrl:
-      "https://picsum.photos/seed/knot-dasie/800/900",
+      "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800",
     mapsUrl: mapsLink("Knot d'Asie", "Vaudreuil-Dorion"),
   },
   {
@@ -207,7 +211,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Hand-folded dumplings, vegan options too.",
     address: "1019 Boul. Saint-Laurent, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/qing-hua/800/900",
+      "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=800",
     mapsUrl: mapsLink("Qing Hua Dumpling", "1019 Boul. Saint-Laurent, Montréal"),
   },
   {
@@ -222,7 +226,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "BYOB, big plates, bring the squad.",
     address: "5215 Boul. Saint-Laurent, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/lyla/800/900",
+      "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800",
     mapsUrl: mapsLink("Lyla", "5215 Boul. Saint-Laurent, Montréal"),
   },
   {
@@ -237,7 +241,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Killer chicken wings + papaya salad.",
     address: "7059 Saint-Hubert, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/cafeden/800/900",
+      "https://images.unsplash.com/photo-1496412705862-e0088f16f791?w=800",
     mapsUrl: mapsLink("Cafeden", "7059 Saint-Hubert, Montréal"),
   },
   {
@@ -252,7 +256,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Modern Asian + cocktails, downtown chic.",
     address: "187 Rue Sainte-Catherine O, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/sesame/800/900",
+      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800",
     mapsUrl: mapsLink("Sésame", "187 Rue Sainte-Catherine O, Montréal"),
   },
   {
@@ -267,7 +271,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Iconic. Checkered floor. Old-school perfect.",
     address: "3927 Rue Saint-Denis, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/lexpress/800/900",
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800",
     mapsUrl: mapsLink("L'Express", "3927 Rue Saint-Denis, Montréal"),
   },
   {
@@ -282,7 +286,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Outremont classic. Brunch is the move.",
     address: "1045 Av. Laurier O, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/lemeac/800/900",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     mapsUrl: mapsLink("Leméac", "1045 Av. Laurier O, Montréal"),
   },
   {
@@ -297,7 +301,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Escoffier-inspired, downtown go-to.",
     address: "2050 Rue Mansfield, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/boulevardier/800/900",
+      "https://images.unsplash.com/photo-1592861956120-e524fc739696?w=800",
     mapsUrl: mapsLink("Le Boulevardier", "2050 Rue Mansfield, Montréal"),
   },
   {
@@ -312,7 +316,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Birks building. 19th-century glam.",
     address: "1240 Rue du Square-Phillips, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/henri/800/900",
+      "https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=800",
     mapsUrl: mapsLink(
       "Henri Brasserie Française",
       "1240 Rue du Square-Phillips, Montréal",
@@ -330,7 +334,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Onion soup + duck confit done right.",
     address: "1230 Boul. de Maisonneuve O, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/pois-penche/800/900",
+      "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800",
     mapsUrl: mapsLink("Le Pois Penché", "1230 Boul. de Maisonneuve O, Montréal"),
   },
   {
@@ -345,7 +349,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Affordable bouillon style, escargots welcome.",
     address: "4825 Av. du Parc, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/bouillon-albert/800/900",
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800",
     mapsUrl: mapsLink("Bouillon Albert", "4825 Av. du Parc, Montréal"),
   },
   {
@@ -360,7 +364,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Since 1985. Neighborhood institution.",
     address: "1690 Rue Ontario E, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/au-petit-extra/800/900",
+      "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800",
     mapsUrl: mapsLink("Au Petit Extra", "1690 Rue Ontario E, Montréal"),
   },
   {
@@ -375,7 +379,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Old Montréal vibes, live jazz, wine bar.",
     address: "1 Rue Saint-Paul O, Montréal",
     imageUrl:
-      "https://picsum.photos/seed/modavie/800/900",
+      "https://images.unsplash.com/photo-1592861956120-e524fc739696?w=800",
     mapsUrl: mapsLink("Modavie", "1 Rue Saint-Paul O, Montréal"),
   },
 ];
