@@ -8,7 +8,7 @@ import {
   type ComponentProps,
 } from "react";
 import dynamic from "next/dynamic";
-import Image from "next/image";
+import { RestaurantImage } from "@/components/RestaurantImage";
 import confetti from "canvas-confetti";
 import {
   AnimatePresence,
@@ -183,7 +183,7 @@ function StackBackCard({ restaurant }: { restaurant: Restaurant }) {
       aria-hidden
     >
       <div className="relative h-72 w-full">
-        <Image
+        <RestaurantImage
           src={restaurant.imageUrl}
           alt=""
           fill
@@ -248,7 +248,7 @@ function SwipeCard({
       className="absolute inset-x-0 top-0 mx-auto w-full max-w-[340px] touch-none overflow-hidden rounded-card border-[0.5px] border-cocoa/15 bg-surface shadow-warm"
     >
       <div className="relative h-[300px] w-full md:h-[320px]">
-        <Image
+        <RestaurantImage
           src={restaurant.imageUrl}
           alt=""
           fill
@@ -1000,7 +1000,7 @@ export function MealMatchApp() {
 
             <div className="mt-6 w-full overflow-hidden rounded-card border-[0.5px] border-cocoa/12 bg-surface shadow-warm">
               <div className="relative h-44 w-full">
-                <Image
+                <RestaurantImage
                   src={winner.imageUrl}
                   alt=""
                   fill
