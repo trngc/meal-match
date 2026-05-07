@@ -181,7 +181,7 @@ const RESTAURANTS: Restaurant[] = [
     description: "Best banh mi, sesame bread, real cheap.",
     address: "5772 Boul. Décarie, Montréal",
     imageUrl:
-      "https://images.unsplash.com/photo-1600454267253-50ec4c98203b?w=800",
+      "https://images.unsplash.com/photo-1623205161276-6db8c1c97b13?w=800",
     mapsUrl: mapsLink("Hoang Oanh Sandwich", "5772 Boul. Décarie, Montréal"),
   },
   {
