@@ -176,24 +176,59 @@ type FlowStep =
   | "reveal"
   | "noMatch";
 
-function StackBackCard({ restaurant }: { restaurant: Restaurant }) {
+/** One shared layout for peek + front so promoting a card never adds new rows (no two-stage reveal). */
+function RestaurantCardFace({
+  restaurant,
+  imagePriority,
+}: {
+  restaurant: Restaurant;
+  imagePriority: boolean;
+}) {
   return (
-    <div
-      className="absolute inset-x-0 top-2 mx-auto w-full max-w-[340px] translate-y-2 scale-[0.96] overflow-hidden rounded-card border-[0.5px] border-cocoa/10 bg-surface opacity-95 shadow-warm-sm pointer-events-none"
-      aria-hidden
-    >
-      <div className="relative h-72 w-full">
+    <>
+      <div className="relative h-[300px] w-full shrink-0">
         <RestaurantImage
           src={restaurant.imageUrl}
           alt=""
           fill
           className="object-cover"
           sizes="340px"
+          {...(imagePriority
+            ? { priority: true, loading: "eager" as const }
+            : { loading: "lazy" as const })}
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-cocoa/50 via-transparent to-transparent" />
       </div>
-      <div className="p-4">
-        <p className="font-display text-xl text-cocoa">{restaurant.name}</p>
+      <div className="flex min-h-[276px] flex-col space-y-2 p-5 pb-6">
+        <h3 className="font-display text-[26px] leading-tight text-cocoa">
+          {restaurant.name}
+        </h3>
+        <p className="font-body text-[15px] text-cocoa-soft">
+          {restaurant.subCuisine} · {priceLabel(restaurant.priceLevel)}
+        </p>
+        <p className="font-body text-[15px] leading-snug text-cocoa">
+          {restaurant.description}
+        </p>
+        <div className="mt-auto flex flex-wrap gap-3 pt-3 font-body text-sm text-cocoa-soft">
+          <span className="rounded-pill bg-peach/40 px-3 py-1 text-cocoa">
+            🚶 {restaurant.distanceMin} min
+          </span>
+          <span className="rounded-pill bg-mustard/35 px-3 py-1 text-cocoa">
+            ⏱ ~{restaurant.waitTimeMin} min wait
+          </span>
+        </div>
       </div>
+    </>
+  );
+}
+
+function StackBackCard({ restaurant }: { restaurant: Restaurant }) {
+  return (
+    <div
+      className="pointer-events-none absolute inset-x-0 top-2 mx-auto flex min-h-[592px] w-full max-w-[340px] translate-y-2 scale-[0.96] flex-col overflow-hidden rounded-card border-[0.5px] border-cocoa/10 bg-surface opacity-95 shadow-warm-sm"
+      aria-hidden
+    >
+      <RestaurantCardFace restaurant={restaurant} imagePriority={false} />
     </div>
   );
 }
@@ -245,38 +280,9 @@ function SwipeCard({
           void finish("no");
         }
       }}
-      className="absolute inset-x-0 top-0 mx-auto w-full max-w-[340px] touch-none overflow-hidden rounded-card border-[0.5px] border-cocoa/15 bg-surface shadow-warm"
+      className="absolute inset-x-0 top-0 mx-auto flex min-h-[592px] w-full max-w-[340px] touch-none flex-col overflow-hidden rounded-card border-[0.5px] border-cocoa/15 bg-surface shadow-warm"
     >
-      <div className="relative h-[300px] w-full md:h-[320px]">
-        <RestaurantImage
-          src={restaurant.imageUrl}
-          alt=""
-          fill
-          className="object-cover"
-          sizes="340px"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-cocoa/50 via-transparent to-transparent" />
-      </div>
-      <div className="space-y-2 p-5 pb-6">
-        <h3 className="font-display text-[26px] leading-tight text-cocoa">
-          {restaurant.name}
-        </h3>
-        <p className="font-body text-[15px] text-cocoa-soft">
-          {restaurant.subCuisine} · {priceLabel(restaurant.priceLevel)}
-        </p>
-        <p className="font-body text-[15px] leading-snug text-cocoa">
-          {restaurant.description}
-        </p>
-        <div className="flex flex-wrap gap-3 pt-1 font-body text-sm text-cocoa-soft">
-          <span className="rounded-pill bg-peach/40 px-3 py-1 text-cocoa">
-            🚶 {restaurant.distanceMin} min
-          </span>
-          <span className="rounded-pill bg-mustard/35 px-3 py-1 text-cocoa">
-            ⏱ ~{restaurant.waitTimeMin} min wait
-          </span>
-        </div>
-      </div>
+      <RestaurantCardFace restaurant={restaurant} imagePriority />
     </motion.div>
   );
 }
